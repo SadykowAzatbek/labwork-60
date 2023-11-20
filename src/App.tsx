@@ -15,7 +15,7 @@ function App() {
     userMessage: '',
   });
 
-  useEffect(() => {
+
     const sendData = async () => {
       const data = new URLSearchParams();
       data.set('message', message.userMessage);
@@ -26,10 +26,6 @@ function App() {
         body: data,
       });
     }
-
-    void sendData();
-
-  }, []);
 
   const changeAuthorInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessage((prev) => ({
@@ -46,6 +42,7 @@ function App() {
 
   const onFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setMessage({ author: '', userMessage: ''});
   };
 
   return (
@@ -66,7 +63,7 @@ function App() {
             onChange={changeMessageInput}
           />
         </div>
-        <button type="submit" className="btn btn-primary">Добавить</button>
+        <button type="submit" className="btn btn-primary" onClick={sendData}>Добавить</button>
       </form>
       <AddMessage />
     </>

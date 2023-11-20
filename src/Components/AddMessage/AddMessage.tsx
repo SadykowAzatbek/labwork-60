@@ -14,7 +14,6 @@ const AddMessage = () => {
       const messageData = await response.json();
 
       if (messageData.length > 0) {
-        lastDateTime = messageData[messageData.length - 1].dateTime;
         setMessages(messageData);
       }
     }, 2000);
@@ -24,8 +23,8 @@ const AddMessage = () => {
 
   return (
     <div className="d-flex flex-wrap">
-      {messages.map((elem: messageProp, index) => (
-        <MessageElem message={elem.message} author={elem.author} dateTime={elem.datetime} key={index} />
+      {messages.slice(messages.length - 15).map((elem: messageProp, index) => (
+        <MessageElem message={elem.message} author={elem.author} dateTime={new Date(elem.datetime).toString()} key={index} />
       ))}
     </div>
   );
