@@ -1,4 +1,5 @@
 export interface messageProp {
-  id: string;
-  input: string;
+  author: string;
+  dateTime: string;
+  message: string;
 }
